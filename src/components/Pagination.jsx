@@ -1,73 +1,10 @@
 import React from "react";
-import styled from "@emotion/styled";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/outline";
 import { nanoid } from "nanoid";
+import classnames from "classnames";
+import "../css/pagination.scss";
 import PropTypes from "prop-types";
 import usePagination, { DOTS } from "../hooks/usePagination";
-
-const PaginationWrapper = styled.ul`
-  display: flex;
-  list-style-type: none;
-  margin-bottom: 20px;
-
-  &:last-child {
-    margin-top: 20px;
-  }
-`;
-
-const PaginationItem = styled.li`
-  ${(props) => {
-    let style = `padding: 0 12px;
-    height: 32px;
-    text-align: center;
-    margin: auto 4px;
-    color: rgba(0, 0, 0, 0.87);
-    display: flex;
-    box-sizing: border-box;
-    align-items: center;
-    letter-spacing: 0.01071em;
-    border-radius: 16px;
-    line-height: 1.43;
-    font-size: 13px;
-    min-width: 32px;
-  
-    &:hover {
-      background-color: rgba(0, 0, 0, 0.04);
-      cursor: pointer;
-    }`;
-
-    if (props.disabled) {
-      style += `
-        pointer-events: none;
-      `;
-    }
-
-    if (props.selected) {
-      style += `
-        background-color: rgba(0, 0, 0, 0.08);
-      `;
-    }
-
-    return style;
-  }}
-`;
-
-const PaginationRowSelectorItem = styled(PaginationItem)`
-  background-color: rgba(0, 0, 0, 0.04);
-`;
-
-const PaginationRowSelect = styled.select`
-  background-color: transparent;
-  border: none;
-  outline: none;
-`;
-
-const PaginationDots = styled(PaginationItem)`
-  &:hover {
-    background-color: transparent;
-    cursor: default;
-  }
-`;
 
 function Pagination({
   onPageChange,
@@ -92,52 +29,70 @@ function Pagination({
   };
 
   return (
-    <PaginationWrapper>
-      <PaginationItem
-        onClick={onPrevious}
-        disabled={false}
-        className="prevButton"
+    <ul className="wrapper">
+      <li
+        className={classnames("paginationItem", {
+          disabled: false, // change this logic to add disabled class name
+        })}
       >
-        <ChevronLeftIcon disabled={false} />
-      </PaginationItem>
+        <button type="button" className="arrowButton left" onClick={onPrevious}>
+          <ChevronLeftIcon />
+        </button>
+      </li>
+
       {paginationRange.map((pageNumber) => {
         const key = nanoid();
 
         if (pageNumber === DOTS) {
-          return <PaginationDots key={key}>&#8230;</PaginationDots>;
+          return (
+            <li key={key} className="dots">
+              &#8230;
+            </li>
+          );
         }
 
         return (
-          <PaginationItem
-            onClick={() => onPageChange(pageNumber)}
-            selected={false} // configure to properly show selected page
+          <li
             key={key}
-            className="pageButton"
+            className={classnames("paginationItem", {
+              selected: false, // change this logic to add selected class name
+            })}
           >
-            {pageNumber}
-          </PaginationItem>
+            <button
+              type="button"
+              className="itemButton"
+              onClick={() => onPageChange(pageNumber)}
+            >
+              {pageNumber}
+            </button>
+          </li>
         );
       })}
 
-      <PaginationItem onClick={onNext} disabled={false} className="nextButton">
-        <ChevronRightIcon disabled={false} />
-      </PaginationItem>
-      <PaginationRowSelectorItem>
-        <PaginationRowSelect
-          value={pageSize}
-          onChange={(e) => {
-            onPageSizeOptionChange(e.target.value);
-          }}
-          className="rowSelectDropdown"
-        >
-          {pageSizeOptions.map((size) => (
-            <option key={size} defaultValue={pageSize === size} value={size}>
-              {size} per page
-            </option>
-          ))}
-        </PaginationRowSelect>
-      </PaginationRowSelectorItem>
-    </PaginationWrapper>
+      <li
+        className={classnames("paginationItem", {
+          disabled: false, // change this logic to add disabled class name
+        })}
+      >
+        <button type="button" className="arrowButton right" onClick={onNext}>
+          <ChevronRightIcon />
+        </button>
+      </li>
+
+      <select
+        className="paginationSelector"
+        value={pageSize}
+        onChange={(e) => {
+          onPageSizeOptionChange(e.target.value);
+        }}
+      >
+        {pageSizeOptions.map((size) => (
+          <option key={size} defaultValue={pageSize === size} value={size}>
+            {size} per page
+          </option>
+        ))}
+      </select>
+    </ul>
   );
 }
 

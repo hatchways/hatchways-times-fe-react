@@ -1,24 +1,17 @@
 import React from "react";
-import styled from "@emotion/styled";
 import BlogList from "./components/BlogList";
 import StyledNavbar from "./components/Navbar";
-import PageWrapper from "./components/page/PageWrapper";
 import StickySidebar from "./components/StickySidebar";
-
-const BlogPageWrapper = styled.div`
-  display: flex;
-  margin-top: 60px;
-`;
 
 function HatchwaysBlog() {
   return (
-    <PageWrapper>
+    <div style={{ margin: "0 auto", width: "100%", padding: 20 }}>
       <StyledNavbar />
-      <BlogPageWrapper>
+      <div style={{ marginTop: 60, display: "flex" }}>
         <BlogList />
         <StickySidebar />
-      </BlogPageWrapper>
-    </PageWrapper>
+      </div>
+    </div>
   );
 }
 

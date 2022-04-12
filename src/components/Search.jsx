@@ -1,27 +1,13 @@
-import styled from "@emotion/styled";
 import { SearchIcon } from "@heroicons/react/outline";
 import React from "react";
-
-const Icon = styled(SearchIcon)`
-  width: 30px;
-  margin-right: 12px;
-`;
-
-const SearchInputWrapper = styled("div")`
-  display: flex;
-`;
-
-const Input = styled("input")`
-  padding: 0 12px;
-  width: 100%;
-`;
+import "../css/navbar.scss";
 
 function SearchInput() {
   return (
-    <SearchInputWrapper>
-      <Icon />
-      <Input placeholder="Search..." />
-    </SearchInputWrapper>
+    <div style={{ display: "flex" }}>
+      <SearchIcon className="icon" />
+      <input className="input" placeholder="Search..." />
+    </div>
   );
 }
 

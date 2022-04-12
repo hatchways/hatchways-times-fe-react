@@ -28,18 +28,8 @@ function BlogList() {
           title={blog.title}
           excerpt={blog.excerpt}
           featureImage={blog.image}
-          readingTimeMinutes={blog.readingTimeMinutes}
         />
       ))}
-      <Pagination
-        currentPage={1}
-        totalCount={blogs.posts.length}
-        pageSize={15}
-        pageSizeOptions={PAGE_SIZES}
-        siblingCount={1}
-        onPageChange={updatePage}
-        onPageSizeOptionChange={updateRowsPerPage}
-      />
     </div>
   );
 }

@@ -1,5 +1,3 @@
-import facepaint from "facepaint";
-
 const colors = {
   text: {
     primary: "#184D47",
@@ -44,11 +42,6 @@ const theme = {
       heading: 700,
       body: 400,
     },
-  },
-  getBreakpoints() {
-    return facepaint(
-      this.breakpoints.map((bp) => `@media (min-width: ${bp}px)`)
-    );
   },
 };
 export default theme;

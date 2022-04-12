@@ -1,16 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { Global, ThemeProvider } from "@emotion/react";
 import HatchwaysBlog from "./HatchwaysBlog";
-import GlobalStyles from "./global";
-import globalTheme from "./theme";
+import "./css/global.scss";
 
 ReactDOM.render(
   <React.StrictMode>
-    <ThemeProvider theme={globalTheme}>
-      <Global styles={GlobalStyles} />
-      <HatchwaysBlog />
-    </ThemeProvider>
+    <HatchwaysBlog />
   </React.StrictMode>,
   document.getElementById("root")
 );
