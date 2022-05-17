@@ -1,7 +1,7 @@
+import BlogPost from "./BlogPost";
+import Pagination from "./Pagination";
 import React from "react";
 import blogs from "../data/blogs.json";
-import Pagination from "./Pagination";
-import BlogPost from "./BlogPost";
 
 const PAGE_SIZES = [15, 25, 50, 100];
 
@@ -21,15 +21,17 @@ function BlogList() {
         onPageChange={updatePage}
         onPageSizeOptionChange={updateRowsPerPage}
       />
-      {currentPaginationData.map((blog) => (
-        <BlogPost
-          key={blog.id}
-          author={blog.author}
-          title={blog.title}
-          excerpt={blog.excerpt}
-          featureImage={blog.image}
-        />
-      ))}
+      <ul aria-label="blog list">
+        {currentPaginationData.map((blog) => (
+          <BlogPost
+            key={blog.id}
+            author={blog.author}
+            title={blog.title}
+            excerpt={blog.excerpt}
+            featureImage={blog.image}
+          />
+        ))}
+      </ul>
     </div>
   );
 }
