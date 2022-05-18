@@ -4,7 +4,7 @@ import HatchwaysBlog from "./HatchwaysBlog";
 import blogs from "./data/blogs.json";
 import userEvent from "@testing-library/user-event";
 
-test("prev button should exist", async () => {
+test("Prev button should exist", async () => {
   render(<HatchwaysBlog />);
   const previousButton = screen.getByRole("button", {
     name: "Goto previous page",
@@ -13,7 +13,7 @@ test("prev button should exist", async () => {
   expect(previousButton).toBeInTheDocument();
 });
 
-test("next button should exist", async () => {
+test("Next button should exist", async () => {
   render(<HatchwaysBlog />);
   const nextButton = screen.getByRole("button", {
     name: "Goto next page",
@@ -22,7 +22,7 @@ test("next button should exist", async () => {
   expect(nextButton).toBeInTheDocument();
 });
 
-test("first 15 posts should be rendered", async () => {
+test("First 15 posts should be rendered by default", async () => {
   render(<HatchwaysBlog />);
   const blogList = screen.getByRole("list", { name: "blog list" });
   const blogItems = within(blogList).getAllByRole("listitem");
@@ -84,7 +84,7 @@ test("Prev button should be disabled when page 1 is selected", async () => {
   expect(previousButton).toBeDisabled();
 });
 
-test("All pagination buttons should exist", async () => {
+test("All pagination buttons should exist by default", async () => {
   render(<HatchwaysBlog />);
 
   const paginationList = screen.getByRole("list", {
