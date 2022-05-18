@@ -30,11 +30,16 @@ function Pagination({
   };
 
   return (
-    <ul className="wrapper" aria-label="Blog post pagination list">
+    <ul
+      className="wrapper"
+      //! PLEASE DO NOT REMOVE THE ARIA-LABEL BELOW
+      aria-label="Blog post pagination list"
+    >
       <li className="paginationItem">
         <button
           type="button"
           className="arrowButton left"
+          //! PLEASE DO NOT REMOVE THE ARIA-LABEL BELOW
           aria-label="Goto previous page"
           onClick={onPrevious}
           disabled={false} // change this line to disable a button.
@@ -62,6 +67,7 @@ function Pagination({
           >
             <button
               type="button"
+              //! PLEASE DO NOT REMOVE THE ARIA-LABEL BELOW
               aria-label={`Goto page ${pageNumber}`}
               onClick={() => onPageChange(pageNumber)}
             >
@@ -75,6 +81,7 @@ function Pagination({
         <button
           type="button"
           className="arrowButton right"
+          //! PLEASE DO NOT REMOVE THE ARIA-LABEL BELOW
           aria-label="Goto next page"
           onClick={onNext}
           disabled={false} // change this line to disable a button.
@@ -85,6 +92,7 @@ function Pagination({
 
       <select
         className="paginationSelector"
+        //! PLEASE DO NOT REMOVE THE ARIA-LABEL BELOW
         aria-label="Select page size"
         value={pageSize}
         onChange={(e) => {

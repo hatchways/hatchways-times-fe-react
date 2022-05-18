@@ -21,7 +21,10 @@ function BlogList() {
         onPageChange={updatePage}
         onPageSizeOptionChange={updateRowsPerPage}
       />
-      <ul aria-label="blog list">
+      <ul
+        //! PLEASE DO NOT REMOVE THE ARIA-LABEL BELOW
+        aria-label="blog list"
+      >
         {currentPaginationData.map((blog) => (
           <BlogPost
             key={blog.id}
