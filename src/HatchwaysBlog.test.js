@@ -4,6 +4,13 @@ import HatchwaysBlog from "./HatchwaysBlog";
 import blogs from "./data/blogs.json";
 import userEvent from "@testing-library/user-event";
 
+// ---------------------------------------------------------------- //
+//                                                                  //
+//                 PLEASE DO NOT MODIFY THIS FILE.                  //
+//               Hatchways automation depends on it.                //
+//                                                                  //
+// ---------------------------------------------------------------- //
+
 test("Prev button should exist", async () => {
   render(<HatchwaysBlog />);
   const previousButton = screen.getByRole("button", {
