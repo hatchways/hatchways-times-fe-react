@@ -37,6 +37,12 @@ A blog post has the following structure:
 yarn install
 ```
 
+### Format Code
+
+```
+yarn prettier --write .
+```
+
 ### Development
 
 ```

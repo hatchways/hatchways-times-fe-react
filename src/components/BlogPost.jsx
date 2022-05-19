@@ -1,11 +1,11 @@
-import React from "react";
-import PropTypes from "prop-types";
-
 import "../css/blogs.scss";
+
+import PropTypes from "prop-types";
+import React from "react";
 
 function BlogPost({ author, title, excerpt }) {
   return (
-    <div className="blogsWrapper">
+    <li className="blogsWrapper">
       <div className="blog">
         <div className="imageWrapper">
           <img
@@ -19,7 +19,7 @@ function BlogPost({ author, title, excerpt }) {
         <h2>{title}</h2>
         <p className="excerpt">{excerpt}</p>
       </div>
-    </div>
+    </li>
   );
 }
 

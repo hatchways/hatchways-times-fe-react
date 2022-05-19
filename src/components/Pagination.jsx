@@ -1,10 +1,11 @@
-import React from "react";
-import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/outline";
-import { nanoid } from "nanoid";
-import classnames from "classnames";
 import "../css/pagination.scss";
-import PropTypes from "prop-types";
+
+import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/outline";
 import usePagination, { DOTS } from "../hooks/usePagination";
+
+import PropTypes from "prop-types";
+import React from "react";
+import { nanoid } from "nanoid";
 
 function Pagination({
   onPageChange,
@@ -29,13 +30,20 @@ function Pagination({
   };
 
   return (
-    <ul className="wrapper">
-      <li
-        className={classnames("paginationItem", {
-          disabled: false, // change this logic to add disabled class name
-        })}
-      >
-        <button type="button" className="arrowButton left" onClick={onPrevious}>
+    <ul
+      className="wrapper"
+      // Do not remove the aria-label below, it is used for Hatchways automation.
+      aria-label="Blog post pagination list"
+    >
+      <li className="paginationItem">
+        <button
+          type="button"
+          className="arrowButton left"
+          // Do not remove the aria-label below, it is used for Hatchways automation.
+          aria-label="Goto previous page"
+          onClick={onPrevious}
+          disabled={false} // change this line to disable a button.
+        >
           <ChevronLeftIcon />
         </button>
       </li>
@@ -54,13 +62,13 @@ function Pagination({
         return (
           <li
             key={key}
-            className={classnames("paginationItem", {
-              selected: false, // change this logic to add selected class name
-            })}
+            className="paginationItem"
+            aria-current="false" // change this line to highlight a current page.
           >
             <button
               type="button"
-              className="itemButton"
+              // Do not remove the aria-label below, it is used for Hatchways automation.
+              aria-label={`Goto page ${pageNumber}`}
               onClick={() => onPageChange(pageNumber)}
             >
               {pageNumber}
@@ -69,18 +77,23 @@ function Pagination({
         );
       })}
 
-      <li
-        className={classnames("paginationItem", {
-          disabled: false, // change this logic to add disabled class name
-        })}
-      >
-        <button type="button" className="arrowButton right" onClick={onNext}>
+      <li className="paginationItem">
+        <button
+          type="button"
+          className="arrowButton right"
+          // Do not remove the aria-label below, it is used for Hatchways automation.
+          aria-label="Goto next page"
+          onClick={onNext}
+          disabled={false} // change this line to disable a button.
+        >
           <ChevronRightIcon />
         </button>
       </li>
 
       <select
         className="paginationSelector"
+        // Do not remove the aria-label below, it is used for Hatchways automation.
+        aria-label="Select page size"
         value={pageSize}
         onChange={(e) => {
           onPageSizeOptionChange(e.target.value);
