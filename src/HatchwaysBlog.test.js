@@ -52,15 +52,13 @@ test("First 15 posts should be rendered by default", async () => {
 test("Changing page size from 15 to 25 should render 25 posts", async () => {
   const user = userEvent.setup();
   render(<HatchwaysBlog />);
-  const blogList = screen.getByRole("list", { name: "blog list" });
   const pageSizeMenu = screen.getByRole("combobox", {
     name: "Select page size",
   });
 
-  await user.click(pageSizeMenu);
-  const twentyFive = screen.getByRole("option", { name: "25 per page" });
+  await user.selectOptions(pageSizeMenu, "25");
 
-  await user.click(twentyFive);
+  const blogList = screen.getByRole("list", { name: "blog list" });
   const blogItems = within(blogList).getAllByRole("listitem");
 
   expect(blogItems).toHaveLength(25);
