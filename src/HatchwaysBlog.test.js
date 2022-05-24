@@ -76,6 +76,28 @@ test("Changing page size from 15 to 25 should render 25 posts", async () => {
   }
 });
 
+test("Page 1 is initially selected", async () => {
+  render(<HatchwaysBlog />);
+  const currentPage = screen.getByRole("listitem", {
+    current: "page",
+  });
+
+  expect(currentPage).toHaveTextContent("1");
+});
+
+test("Page 1 is not selected when page 2 is selected", async () => {
+  const user = userEvent.setup();
+  render(<HatchwaysBlog />);
+  const pageTwoButton = screen.getByText("2", { selector: "button" });
+
+  await user.click(pageTwoButton);
+
+  const pageTwo = screen.getByText("2", { selector: "button" }).closest("li");
+  expect(pageTwo).toHaveAttribute("aria-current", "page");
+  const pageOne = screen.getByText("1", { selector: "button" }).closest("li");
+  expect(pageOne).toHaveAttribute("aria-current", "false");
+});
+
 test("Prev button should be disabled when page 1 is selected", async () => {
   const user = userEvent.setup();
   render(<HatchwaysBlog />);
