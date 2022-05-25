@@ -48,3 +48,9 @@ yarn prettier --write .
 ```
 yarn start
 ```
+
+### Testing
+
+```
+yarn test
+```
